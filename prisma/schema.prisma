@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+// ==========================================
+// ĐỊNH NGHĨA CÁC BẢNG DỮ LIỆU (MODELS)
+// ==========================================
+
+// 3. Bảng Ảnh (Gallery/Sản phẩm)
+model Product {
+  id          String   @id @default(cuid())
+  imageUrl    String   // Link ảnh từ Cloudinary
+  title       String?  // Tên ảnh (không bắt buộc)
+  tags        String[] // Tag để lọc: ["Sinh nhật", "Đỏ"]
+  isRealPhoto Boolean  @default(true) // Phân biệt ảnh thật vs ảnh mẫu
+  createdAt   DateTime @default(now())
+}
+
+// 4. Bảng Yêu cầu tư vấn (Khách điền form)
+model Consultation {
+  id            String   @id @default(cuid())
+  customerName  String?
+  customerPhone String?
+  budget        String   // Ngân sách
+  occasion      String   // Dịp tặng
+  style         String?  // Phong cách/Màu
+  notes         String?
+  status        String   @default("NEW") // Trạng thái: NEW, DONE...
+  createdAt     DateTime @default(now())
+}
+
+// 5. Cấu hình Shop (Bật/Tắt nhận đơn)
+model ShopConfig {
+  id           Int      @id @default(1)
+  isAccepting  Boolean  @default(true)
+  notification String?
+}
