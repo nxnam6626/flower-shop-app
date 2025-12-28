@@ -56,7 +56,7 @@ export default async function HomePage() {
         {/* Lưới ảnh (Grid) */}
         {products.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <div key={product.id} className="group relative aspect-[3/4] overflow-hidden rounded-lg bg-gray-100">
                 <img 
                   src={product.imageUrl} 
