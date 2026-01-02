@@ -7,14 +7,15 @@ import { revalidatePath } from "next/cache"
 
 export async function uploadProduct(formData: FormData) {
   const file = formData.get('file') as File
+  const title = formData.get('title') as string
   const tags = formData.get('tags') as string // Nhận chuỗi tags (VD: "Sinh nhật,Đỏ")
-  
+
   if (!file) throw new Error("Chưa chọn ảnh!")
 
   // 1. Convert file sang Buffer để upload lên Cloudinary
   const arrayBuffer = await file.arrayBuffer()
   const buffer = new Uint8Array(arrayBuffer)
-  
+
   // 2. Upload lên Cloudinary
   const uploadResult: any = await new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream(
@@ -30,14 +31,16 @@ export async function uploadProduct(formData: FormData) {
   await prisma.product.create({
     data: {
       imageUrl: uploadResult.secure_url,
+      title: title || null, // Thêm title vào database
       tags: tags ? tags.split(',').map(t => t.trim()) : [], // Tách chuỗi thành mảng
-      isRealPhoto: true, 
+      isRealPhoto: true,
     }
   })
 
   // 4. Làm mới dữ liệu trang chủ (để ảnh hiện ra ngay lập tức)
   revalidatePath('/')
   revalidatePath('/gallery')
-  
+  revalidatePath('/dashboard')
+
   return { success: true }
 }
