@@ -1,9 +1,30 @@
+'use client'
+
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import { LogOut } from "lucide-react";
 
 export default function DashboardPage() {
+  const { data: session } = useSession();
+
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">Tổng quan hôm nay</h2>
+      {/* Header với logout */}
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h2 className="text-2xl font-bold">Tổng quan hôm nay</h2>
+          {session?.user && (
+            <p className="text-sm text-gray-500 mt-1">Xin chào, {session.user.name}</p>
+          )}
+        </div>
+        <button
+          onClick={() => signOut({ callbackUrl: '/login' })}
+          className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition px-3 py-2 rounded-lg hover:bg-red-50"
+        >
+          <LogOut size={18} />
+          Đăng xuất
+        </button>
+      </div>
       
       {/* Thống kê nhanh */}
       <div className="grid grid-cols-2 gap-4 mb-8">
