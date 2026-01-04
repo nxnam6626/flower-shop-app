@@ -35,14 +35,33 @@ export default async function ConsultationsPage({
         <StatusFilter currentStatus={status} />
 
         {/* Stats */}
-        <div className="bg-white rounded-xl p-4 mb-6 shadow-sm border border-gray-100">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900">{consultations.length}</div>
-            <div className="text-sm text-gray-600">
-              {status === 'ALL' ? 'Tổng số yêu cầu' : 
-               status === 'NEW' ? 'Yêu cầu mới' : 'Đã hoàn thành'}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-gray-900">{consultations.length}</div>
+              <div className="text-sm text-gray-600">
+                {status === 'ALL' ? 'Tổng số yêu cầu' : 
+                 status === 'NEW' ? 'Yêu cầu mới' : 'Đã hoàn thành'}
+              </div>
             </div>
           </div>
+          
+          {status === 'NEW' && (
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-4 shadow-sm border border-red-200">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-red-600">
+                  {consultations.filter(c => {
+                    if (!c.deliveryDate) return false
+                    const days = Math.floor((new Date(c.deliveryDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
+                    return days <= 3 && days >= 0
+                  }).length}
+                </div>
+                <div className="text-sm text-red-700 font-medium">
+                  🔴 Cần giao gấp (≤3 ngày)
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* List */}
