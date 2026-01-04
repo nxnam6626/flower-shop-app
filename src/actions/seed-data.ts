@@ -2,10 +2,11 @@
 'use server'
 
 import { prisma } from "@/lib/prisma"
+import { addDays } from 'date-fns'
 
 export async function seedTestData() {
     try {
-        // 1. Tạo consultations mẫu
+        // 1. Tạo consultations mẫu với CRM fields
         const consultations = await Promise.all([
             prisma.consultation.create({
                 data: {
@@ -15,7 +16,9 @@ export async function seedTestData() {
                     occasion: "Sinh nhật",
                     style: "Tone hồng pastel",
                     notes: "Muốn hoa tươi, giao trong ngày",
-                    status: "NEW"
+                    status: "NEW",
+                    source: "PRODUCT_PAGE",
+                    deliveryDate: addDays(new Date(), 3) // 3 ngày sau
                 }
             }),
             prisma.consultation.create({
@@ -26,7 +29,9 @@ export async function seedTestData() {
                     occasion: "Khai trương",
                     style: "Tone đỏ, vàng sang trọng",
                     notes: "Cần giao trước 8h sáng",
-                    status: "NEW"
+                    status: "NEW",
+                    source: "CONTACT_FORM",
+                    deliveryDate: addDays(new Date(), 7)
                 }
             }),
             prisma.consultation.create({
@@ -36,8 +41,9 @@ export async function seedTestData() {
                     budget: "300k - 500k",
                     occasion: "Valentine",
                     style: "Hoa hồng đỏ",
-                    notes: null,
-                    status: "NEW"
+                    status: "NEW",
+                    source: "ZALO_DIRECT",
+                    deliveryDate: new Date('2025-02-14')
                 }
             }),
             prisma.consultation.create({
@@ -48,7 +54,9 @@ export async function seedTestData() {
                     occasion: "Đám cưới",
                     style: "Tone trắng, kem",
                     notes: "Cần tư vấn kỹ về thiết kế",
-                    status: "NEW"
+                    status: "NEW",
+                    source: "PRODUCT_PAGE",
+                    deliveryDate: addDays(new Date(), 30)
                 }
             })
         ])

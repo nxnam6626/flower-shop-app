@@ -25,6 +25,10 @@ model Product {
   tags        String[] // Tag để lọc: ["Sinh nhật", "Đỏ"]
   isRealPhoto Boolean  @default(true) // Phân biệt ảnh thật vs ảnh mẫu
   createdAt   DateTime @default(now())
+  
+  // Relations
+  consultations Consultation[]
+  orders        Order[]
 }
 
 // 4. Bảng Yêu cầu tư vấn (Khách điền form)
@@ -38,6 +42,15 @@ model Consultation {
   notes         String?
   status        String   @default("NEW") // Trạng thái: NEW, DONE...
   createdAt     DateTime @default(now())
+  
+  // CRM Fields
+  productId     String?   // Mẫu hoa khách quan tâm
+  deliveryDate  DateTime? // Ngày giao hàng mong muốn
+  source        String?   // PRODUCT_PAGE | CONTACT_FORM | ZALO_DIRECT
+  
+  // Relations
+  product       Product? @relation(fields: [productId], references: [id])
+  orders        Order[]
 }
 
 // 5. Cấu hình Shop (Bật/Tắt nhận đơn)
@@ -45,4 +58,58 @@ model ShopConfig {
   id           Int      @id @default(1)
   isAccepting  Boolean  @default(true)
   notification String?
+}
+
+// 6. Bảng Đơn hàng (Orders)
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique // ORD-20250103-001
+  
+  // Customer info
+  customerName    String
+  customerPhone   String
+  deliveryDate    DateTime
+  deliveryAddress String?
+  
+  // Product info
+  productId       String?
+  productTitle    String
+  productImageUrl String
+  
+  // Pricing (VND)
+  productPrice    Int
+  shippingFee     Int      @default(0)
+  totalAmount     Int
+  
+  // Status
+  status          String   @default("PENDING") // PENDING | CONFIRMED | DELIVERING | COMPLETED | CANCELLED
+  paymentStatus   String   @default("UNPAID")   // UNPAID | PAID
+  
+  // Metadata
+  consultationId  String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  product         Product?      @relation(fields: [productId], references: [id])
+  consultation    Consultation? @relation(fields: [consultationId], references: [id])
+  reminders       CRMReminder[]
+}
+
+// 7. Bảng Nhắc nhở CRM (Reminders)
+model CRMReminder {
+  id              String   @id @default(cuid())
+  orderId         String
+  customerId      String   // customerPhone
+  customerName    String
+  reminderDate    DateTime // Ngày cần nhắc (1 năm sau delivery)
+  reminderType    String   // ANNIVERSARY | BIRTHDAY | HOLIDAY
+  occasion        String   // "Sinh nhật vợ", "Kỷ niệm ngày cưới"
+  lastOrderAmount Int      // Để suggest similar product
+  status          String   @default("PENDING") // PENDING | SENT | SKIPPED
+  createdAt       DateTime @default(now())
+  
+  // Relations
+  order           Order    @relation(fields: [orderId], references: [id])
 }
