@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display, Dancing_Script, Great_Vibes, Alex_Brush } from "next/font/google"; // Import fonts
 import "./globals.css";
-import { SessionProvider } from "./providers/SessionProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
+const dancing = Dancing_Script({ subsets: ["latin"], variable: '--font-dancing' });
+const greatVibes = Great_Vibes({ weight: '400', subsets: ["latin"], variable: '--font-great-vibes' });
+const alexBrush = Alex_Brush({ weight: '400', subsets: ["latin"], variable: '--font-alex-brush' });
 
 export const metadata: Metadata = {
-  title: "Flower Shop Admin",
-  description: "Quản lý cửa hàng hoa",
+  title: "Flower Sight - Shop Hoa Tươi",
+  description: "Trao gửi yêu thương",
 };
 
 export default function RootLayout({
@@ -25,12 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SessionProvider>
-          {children}
-        </SessionProvider>
+      <body className={`${inter.variable} ${playfair.variable} ${dancing.variable} ${greatVibes.variable} ${alexBrush.variable} font-sans`}>
+        {children}
       </body>
     </html>
   );

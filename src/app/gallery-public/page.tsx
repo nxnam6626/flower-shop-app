@@ -1,5 +1,5 @@
 import { getProducts } from '@/actions/products'
-import ProductCard from '@/components/public/ProductCard'
+import ProductCard from '@/components/public/shared/ProductCard'
 import { ImageIcon } from 'lucide-react'
 
 // Public gallery page - SEO friendly
@@ -17,7 +17,7 @@ export default async function PublicGalleryPage({
 }) {
   const params = await searchParams
   const tagFilter = params.tag
-  
+
   const products = await getProducts(tagFilter)
 
   return (

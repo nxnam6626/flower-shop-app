@@ -10,6 +10,124 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+
+
+
+  /* --- ANIMATIONS --- */
+
+  /* --- NEW ANIMATIONS (Combo Elegant Bloom) --- */
+
+  /* 1. Ken Burns: Hiệu ứng zoom nhẹ cho ảnh nền */
+  --animate-ken-burns: ken-burns 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+
+  /* 2. Slide Up Fade: Trượt lên nhẹ nhàng (20px) cho text */
+  --animate-slide-up-fade: slide-up-fade 0.8s ease-out forwards;
+
+  /* 3. Float: Hiệu ứng trôi nổi vô tận cho icon */
+  --animate-float: float 3s ease-in-out infinite;
+
+  /* --- NEW: DIRECTIONAL SLIDE ANIMATIONS --- */
+
+  /* 1. Khi bấm Next: Nội dung lướt từ Phải vào Giữa */
+  --animate-slide-in-right: slide-in-right 0.5s ease-out forwards;
+
+  /* 2. Khi bấm Prev: Nội dung lướt từ Trái vào Giữa */
+  --animate-slide-in-left: slide-in-left 0.5s ease-out forwards;
+
+
+  --animate-ripple: ripple 2s linear infinite;
+
+  --animate-fade-in: fade-in 2s ease-out forwards;
+
+  /* --- KEYFRAMES DEFINITIONS --- */
+
+
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+      /* Lướt từ bên phải 50px */
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+      /* Lướt từ bên trái 50px */
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes ken-burns {
+    0% {
+      opacity: 0;
+      transform: scale(1.15);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 0.75;
+    }
+
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
