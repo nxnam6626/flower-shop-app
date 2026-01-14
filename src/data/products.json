@@ -1,0 +1,839 @@
+{
+    "products": [
+        {
+            "id": "prod-001",
+            "name": "Bó Hoa Hồng Đỏ Tình Yêu",
+            "slug": "bo-hoa-hong-do-tinh-yeu",
+            "category": "bo-hoa",
+            "price": 450000,
+            "originalPrice": 600000,
+            "discount": 25,
+            "images": [
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
+            "description": "Bó hoa hồng đỏ tươi thắm gồm 20 bông hồng Ecuador cao cấp, được kết hợp với baby's breath và lá bạc tạo nên vẻ đẹp lãng mạn, sang trọng. Đây là món quà hoàn hảo để thể hiện tình yêu chân thành và sâu sắc của bạn.",
+            "shortDescription": "20 bông hồng đỏ Ecuador cao cấp kết hợp lá bạc",
+            "colors": [
+                "red"
+            ],
+            "occasions": [
+                "valentine",
+                "anniversary",
+                "birthday"
+            ],
+            "tags": [
+                "hot",
+                "best-seller"
+            ],
+            "stock": 50,
+            "inStock": true,
+            "rating": 4.8,
+            "reviewCount": 127,
+            "specifications": {
+                "type": "Bó Hoa",
+                "flowerCount": 20,
+                "flowerType": "Hồng Ecuador",
+                "height": "40cm",
+                "freshness": "5-7 ngày"
+            },
+            "care": [
+                "Cắt chân hoa xiên 45 độ trước khi cắm",
+                "Thay nước mỗi 2 ngày",
+                "Tránh ánh nắng trực tiếp",
+                "Loại bỏ lá úa thường xuyên"
+            ],
+            "createdAt": "2024-01-15T08:30:00Z",
+            "updatedAt": "2024-01-20T14:20:00Z"
+        },
+        {
+            "id": "prod-002",
+            "name": "Giỏ Hoa Tulip Pastel",
+            "slug": "gio-hoa-tulip-pastel",
+            "category": "gio-hoa",
+            "price": 650000,
+            "originalPrice": 800000,
+            "discount": 19,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Giỏ hoa tulip nhập khẩu Hà Lan với tông màu pastel nhẹ nhàng, kết hợp hài hòa giữa hồng phấn, trắng và vàng nhạt. Thiết kế trong giỏ mây vintage sang trọng, phù hợp cho mọi không gian.",
+            "shortDescription": "30 cành tulip Hà Lan trong giỏ mây vintage",
+            "colors": [
+                "pink",
+                "white",
+                "mixed"
+            ],
+            "occasions": [
+                "birthday",
+                "graduation",
+                "opening"
+            ],
+            "tags": [
+                "hot"
+            ],
+            "stock": 25,
+            "inStock": true,
+            "rating": 4.9,
+            "reviewCount": 89,
+            "specifications": {
+                "type": "Giỏ Hoa",
+                "flowerCount": 30,
+                "flowerType": "Tulip Hà Lan",
+                "height": "35cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Giữ nước trong giỏ luôn sạch",
+                "Đặt nơi thoáng mát",
+                "Tránh gió lùa và nhiệt độ cao",
+                "Cắt bỏ hoa héo kịp thời"
+            ],
+            "createdAt": "2024-01-16T09:15:00Z",
+            "updatedAt": "2024-01-21T11:30:00Z"
+        },
+        {
+            "id": "prod-003",
+            "name": "Hộp Hoa Hồng Phấn Mix Cẩm Chướng",
+            "slug": "hop-hoa-hong-phan-mix-cam-chuong",
+            "category": "hop-hoa",
+            "price": 550000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=400&q=80",
+            "description": "Hộp hoa cao cấp kết hợp hồng phấn Ohara Nhật Bản và cẩm chướng mini, điểm thêm baby's breath tạo vẻ nhẹ nhàng, nữ tính. Hộp giấy cứng sang trọng với nơ lụa cao cấp.",
+            "shortDescription": "Hồng Ohara và cẩm chướng mini trong hộp sang trọng",
+            "colors": [
+                "pink",
+                "white"
+            ],
+            "occasions": [
+                "birthday",
+                "anniversary",
+                "graduation"
+            ],
+            "tags": [
+                "best-seller"
+            ],
+            "stock": 40,
+            "inStock": true,
+            "rating": 4.7,
+            "reviewCount": 156,
+            "specifications": {
+                "type": "Hộp Hoa",
+                "flowerCount": 25,
+                "flowerType": "Hồng Ohara, Cẩm Chướng",
+                "height": "25cm",
+                "freshness": "5-7 ngày"
+            },
+            "care": [
+                "Phun sương nhẹ mỗi ngày",
+                "Không tháo hoa ra khỏi hộp",
+                "Đặt nơi thoáng mát",
+                "Tránh ánh nắng trực tiếp"
+            ],
+            "createdAt": "2024-01-17T10:20:00Z",
+            "updatedAt": "2024-01-22T15:45:00Z"
+        },
+        {
+            "id": "prod-004",
+            "name": "Lẵng Hoa Khai Trương Phát Tài",
+            "slug": "lang-hoa-khai-truong-phat-tai",
+            "category": "lang-hoa",
+            "price": 1200000,
+            "originalPrice": 1500000,
+            "discount": 20,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Lẵng hoa khai trương đầy đủ hoa tươi cao cấp: hồng, ly, đồng tiền, lan hồ điệp. Thiết kế sang trọng với băng ribbon thêu chữ vàng, mang ý nghĩa phát tài phát lộc, thịnh vượng.",
+            "shortDescription": "Lẵng khai trương cao cấp với đa dạng hoa tươi",
+            "colors": [
+                "mixed",
+                "red",
+                "yellow"
+            ],
+            "occasions": [
+                "opening"
+            ],
+            "tags": [
+                "hot"
+            ],
+            "stock": 15,
+            "inStock": true,
+            "rating": 4.9,
+            "reviewCount": 67,
+            "specifications": {
+                "type": "Lẵng Hoa",
+                "flowerCount": 50,
+                "flowerType": "Hồng, Ly, Lan Hồ Điệp",
+                "height": "150cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Đặt nơi thoáng mát, có ánh sáng tự nhiên",
+                "Thay nước hàng ngày",
+                "Cắt chân hoa mỗi 2 ngày",
+                "Bổ sung dinh dưỡng cho hoa"
+            ],
+            "createdAt": "2024-01-18T11:00:00Z",
+            "updatedAt": "2024-01-23T09:15:00Z"
+        },
+        {
+            "id": "prod-005",
+            "name": "Bó Hoa Cúc Họa Mi Trắng Tinh Khôi",
+            "slug": "bo-hoa-cuc-hoa-mi-trang-tinh-khoi",
+            "category": "bo-hoa",
+            "price": 320000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80",
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
+            "description": "Bó hoa cúc họa mi trắng tinh khôi, mang vẻ đẹp dịu dàng, thanh thoát. Kết hợp với lá bạc và giấy gói trắng tối giản, phù hợp cho người yêu phong cách tối giản.",
+            "shortDescription": "Bó cúc họa mi trắng phong cách tối giản",
+            "colors": [
+                "white"
+            ],
+            "occasions": [
+                "birthday",
+                "graduation",
+                "anniversary"
+            ],
+            "tags": [],
+            "stock": 60,
+            "inStock": true,
+            "rating": 4.6,
+            "reviewCount": 98,
+            "specifications": {
+                "type": "Bó Hoa",
+                "flowerCount": 50,
+                "flowerType": "Cúc Họa Mi",
+                "height": "45cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Cắt chân hoa mỗi 2 ngày",
+                "Thay nước thường xuyên",
+                "Đặt nơi thoáng mát",
+                "Tránh nhiệt độ quá cao"
+            ],
+            "createdAt": "2024-01-19T08:45:00Z",
+            "updatedAt": "2024-01-24T10:30:00Z"
+        },
+        {
+            "id": "prod-006",
+            "name": "Giỏ Hoa Lily Trắng Sang Trọng",
+            "slug": "gio-hoa-lily-trang-sang-trong",
+            "category": "gio-hoa",
+            "price": 850000,
+            "originalPrice": 1000000,
+            "discount": 15,
+            "images": [
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=400&q=80",
+            "description": "Giỏ hoa lily trắng cao cấp, kết hợp hoa hồng trắng và cẩm tú cầu xanh nhạt. Thiết kế trang nhã, sang trọng, phù hợp cho các sự kiện quan trọng hoặc tặng người thân.",
+            "shortDescription": "Lily trắng mix hồng và cẩm tú cầu",
+            "colors": [
+                "white"
+            ],
+            "occasions": [
+                "wedding",
+                "graduation",
+                "opening"
+            ],
+            "tags": [
+                "best-seller",
+                "hot"
+            ],
+            "stock": 30,
+            "inStock": true,
+            "rating": 4.8,
+            "reviewCount": 112,
+            "specifications": {
+                "type": "Giỏ Hoa",
+                "flowerCount": 25,
+                "flowerType": "Lily, Hồng, Cẩm Tú Cầu",
+                "height": "40cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Cắt nhụy hoa lily để tránh bám phấn",
+                "Thay nước 2-3 ngày/lần",
+                "Đặt nơi thoáng mát",
+                "Tránh gần hoa quả chín"
+            ],
+            "createdAt": "2024-01-20T09:30:00Z",
+            "updatedAt": "2024-01-25T11:20:00Z"
+        },
+        {
+            "id": "prod-007",
+            "name": "Hộp Hoa Hướng Dương Tươi Vui",
+            "slug": "hop-hoa-huong-duong-tuoi-vui",
+            "category": "hop-hoa",
+            "price": 480000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Hộp hoa hướng dương rực rỡ kết hợp cẩm chướng cam và lá bạc. Thiết kế tươi vui, năng động, mang lại năng lượng tích cực cho người nhận.",
+            "shortDescription": "Hướng dương mix cẩm chướng cam năng động",
+            "colors": [
+                "yellow",
+                "mixed"
+            ],
+            "occasions": [
+                "birthday",
+                "graduation",
+                "opening"
+            ],
+            "tags": [],
+            "stock": 45,
+            "inStock": true,
+            "rating": 4.7,
+            "reviewCount": 134,
+            "specifications": {
+                "type": "Hộp Hoa",
+                "flowerCount": 15,
+                "flowerType": "Hướng Dương, Cẩm Chướng",
+                "height": "30cm",
+                "freshness": "5-7 ngày"
+            },
+            "care": [
+                "Phun sương nhẹ mỗi ngày",
+                "Đặt nơi có ánh sáng gián tiếp",
+                "Kiểm tra nước trong foam mỗi ngày",
+                "Loại bỏ hoa úa kịp thời"
+            ],
+            "createdAt": "2024-01-21T10:15:00Z",
+            "updatedAt": "2024-01-26T14:40:00Z"
+        },
+        {
+            "id": "prod-008",
+            "name": "Bó Hoa Hồng Phấn Ohara Nhật",
+            "slug": "bo-hoa-hong-phan-ohara-nhat",
+            "category": "bo-hoa",
+            "price": 680000,
+            "originalPrice": 850000,
+            "discount": 20,
+            "images": [
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
+            "description": "Bó hoa hồng Ohara Nhật Bản cao cấp màu hồng phấn, nổi tiếng với độ nở lớn và hương thơm dịu nhẹ. Kết hợp lá bạc và baby's breath tạo nên vẻ đẹp lãng mạn, tinh tế.",
+            "shortDescription": "15 bông hồng Ohara Nhật cao cấp",
+            "colors": [
+                "pink"
+            ],
+            "occasions": [
+                "valentine",
+                "anniversary",
+                "birthday"
+            ],
+            "tags": [
+                "best-seller"
+            ],
+            "stock": 35,
+            "inStock": true,
+            "rating": 4.9,
+            "reviewCount": 203,
+            "specifications": {
+                "type": "Bó Hoa",
+                "flowerCount": 15,
+                "flowerType": "Hồng Ohara Nhật",
+                "height": "45cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Cắt chân hoa xiên 45 độ dưới nước",
+                "Thay nước mỗi ngày",
+                "Bổ sung thuốc dưỡng hoa",
+                "Đặt nơi thoáng mát, tránh nắng"
+            ],
+            "createdAt": "2024-01-22T11:00:00Z",
+            "updatedAt": "2024-01-27T09:50:00Z"
+        },
+        {
+            "id": "prod-009",
+            "name": "Lẵng Hoa Chia Buồn Trang Nghiêm",
+            "slug": "lang-hoa-chia-buon-trang-nghiem",
+            "category": "lang-hoa",
+            "price": 950000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Lẵng hoa chia buồn với tông màu trắng - xanh trang nghiêm, gồm lily trắng, hồng trắng, lan trắng và cẩm tú cầu. Thiết kế trang trọng, thể hiện lòng tiếc thương sâu sắc.",
+            "shortDescription": "Lẵng chia buồn trang nghiêm tông trắng xanh",
+            "colors": [
+                "white"
+            ],
+            "occasions": [
+                "funeral"
+            ],
+            "tags": [],
+            "stock": 20,
+            "inStock": true,
+            "rating": 4.8,
+            "reviewCount": 45,
+            "specifications": {
+                "type": "Lẵng Hoa",
+                "flowerCount": 40,
+                "flowerType": "Lily, Hồng, Lan",
+                "height": "120cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Thay nước hàng ngày",
+                "Đặt nơi thoáng mát",
+                "Cắt chân hoa thường xuyên",
+                "Loại bỏ hoa héo"
+            ],
+            "createdAt": "2024-01-23T08:20:00Z",
+            "updatedAt": "2024-01-28T10:10:00Z"
+        },
+        {
+            "id": "prod-010",
+            "name": "Giỏ Hoa Cẩm Chướng Nhiều Màu",
+            "slug": "gio-hoa-cam-chuong-nhieu-mau",
+            "category": "gio-hoa",
+            "price": 420000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=400&q=80",
+            "description": "Giỏ hoa cẩm chướng đa sắc màu rực rỡ, bao gồm đỏ, hồng, vàng, trắng. Thiết kế tươi vui, phù hợp tặng sinh nhật, thăm hỏi hoặc chúc mừng.",
+            "shortDescription": "Cẩm chướng đa sắc màu trong giỏ mây",
+            "colors": [
+                "mixed"
+            ],
+            "occasions": [
+                "birthday",
+                "graduation"
+            ],
+            "tags": [],
+            "stock": 55,
+            "inStock": true,
+            "rating": 4.6,
+            "reviewCount": 87,
+            "specifications": {
+                "type": "Giỏ Hoa",
+                "flowerCount": 40,
+                "flowerType": "Cẩm Chướng",
+                "height": "30cm",
+                "freshness": "10-14 ngày"
+            },
+            "care": [
+                "Thay nước 2-3 ngày/lần",
+                "Cắt chân hoa thường xuyên",
+                "Đặt nơi thoáng mát",
+                "Tránh ánh nắng trực tiếp"
+            ],
+            "createdAt": "2024-01-24T09:40:00Z",
+            "updatedAt": "2024-01-29T11:25:00Z"
+        },
+        {
+            "id": "prod-011",
+            "name": "Kệ Hoa Chúc Mừng Thành Công",
+            "slug": "ke-hoa-chuc-mung-thanh-cong",
+            "category": "ke-hoa",
+            "price": 1500000,
+            "originalPrice": 1800000,
+            "discount": 17,
+            "images": [
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=400&q=80",
+            "description": "Kệ hoa chúc mừng 3 tầng với hồng, ly, lan hồ điệp và các loại hoa lá phụ cao cấp. Thiết kế sang trọng, trang trọng, thích hợp cho khai trương, chúc mừng thành công.",
+            "shortDescription": "Kệ hoa 3 tầng sang trọng với hoa cao cấp",
+            "colors": [
+                "mixed",
+                "pink",
+                "red"
+            ],
+            "occasions": [
+                "opening",
+                "graduation",
+                "wedding"
+            ],
+            "tags": [
+                "hot"
+            ],
+            "stock": 12,
+            "inStock": true,
+            "rating": 4.9,
+            "reviewCount": 78,
+            "specifications": {
+                "type": "Kệ Hoa",
+                "flowerCount": 80,
+                "flowerType": "Hồng, Ly, Lan Hồ Điệp",
+                "height": "180cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Đặt kệ ở vị trí thoáng, có ánh sáng tự nhiên",
+                "Thay nước hàng ngày cho từng tầng",
+                "Cắt chân hoa định kỳ",
+                "Loại bỏ hoa úa kịp thời"
+            ],
+            "createdAt": "2024-01-25T09:00:00Z",
+            "updatedAt": "2024-01-30T10:15:00Z"
+        },
+        {
+            "id": "prod-012",
+            "name": "Kệ Hoa Khai Trương Vạn Sự Như Ý",
+            "slug": "ke-hoa-khai-truong-van-su-nhu-y",
+            "category": "ke-hoa",
+            "price": 2200000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Kệ hoa khai trương đặc biệt với hoa tươi cao cấp, thiết kế 2 tầng hoành tráng. Kết hợp hồng đỏ, vàng, lan, đồng tiền mang ý nghĩa phát tài phát lộc, vượng khí.",
+            "shortDescription": "Kệ khai trương 2 tầng hoành tráng",
+            "colors": [
+                "red",
+                "yellow",
+                "mixed"
+            ],
+            "occasions": [
+                "opening"
+            ],
+            "tags": [
+                "best-seller",
+                "hot"
+            ],
+            "stock": 8,
+            "inStock": true,
+            "rating": 5.0,
+            "reviewCount": 45,
+            "specifications": {
+                "type": "Kệ Hoa",
+                "flowerCount": 120,
+                "flowerType": "Hồng, Lan, Đồng Tiền, Ly",
+                "height": "200cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Đặt nơi có ánh sáng đầy đủ",
+                "Thay nước 2 lần/ngày",
+                "Phun sương nhẹ buổi sáng",
+                "Cắt chân hoa khi cần thiết"
+            ],
+            "createdAt": "2024-01-26T10:30:00Z",
+            "updatedAt": "2024-01-31T14:20:00Z"
+        },
+        {
+            "id": "prod-013",
+            "name": "Bình Hoa Ly Trắng Cao Cấp",
+            "slug": "binh-hoa-ly-trang-cao-cap",
+            "category": "binh-hoa",
+            "price": 780000,
+            "originalPrice": 950000,
+            "discount": 18,
+            "images": [
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80",
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=400&q=80",
+            "description": "Bình hoa ly trắng tinh khôi trong bình gốm sứ cao cấp. Thiết kế tối giản, sang trọng, phù hợp trang trí phòng khách, văn phòng hoặc làm quà tặng.",
+            "shortDescription": "Ly trắng trong bình gốm sứ sang trọng",
+            "colors": [
+                "white"
+            ],
+            "occasions": [
+                "wedding",
+                "anniversary",
+                "opening"
+            ],
+            "tags": [
+                "best-seller"
+            ],
+            "stock": 25,
+            "inStock": true,
+            "rating": 4.8,
+            "reviewCount": 92,
+            "specifications": {
+                "type": "Bình Hoa",
+                "flowerCount": 10,
+                "flowerType": "Ly Trắng",
+                "height": "60cm",
+                "freshness": "10-14 ngày"
+            },
+            "care": [
+                "Thay nước mỗi 2-3 ngày",
+                "Cắt nhụy hoa để tránh bám phấn",
+                "Đặt nơi thoáng mát, ánh sáng vừa phải",
+                "Vệ sinh bình hoa định kỳ"
+            ],
+            "createdAt": "2024-01-27T08:15:00Z",
+            "updatedAt": "2024-02-01T09:30:00Z"
+        },
+        {
+            "id": "prod-014",
+            "name": "Bình Hoa Hồng Phấn Vintage",
+            "slug": "binh-hoa-hong-phan-vintage",
+            "category": "binh-hoa",
+            "price": 680000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&q=80",
+            "description": "Bình hoa hồng Ohara màu hồng phấn trong bình thuỷ tinh vintage. Kết hợp baby's breath và lá bạc tạo vẻ đẹp lãng mạn, cổ điển.",
+            "shortDescription": "Hồng Ohara trong bình thuỷ tinh vintage",
+            "colors": [
+                "pink",
+                "white"
+            ],
+            "occasions": [
+                "valentine",
+                "anniversary",
+                "birthday"
+            ],
+            "tags": [
+                "hot"
+            ],
+            "stock": 30,
+            "inStock": true,
+            "rating": 4.7,
+            "reviewCount": 118,
+            "specifications": {
+                "type": "Bình Hoa",
+                "flowerCount": 12,
+                "flowerType": "Hồng Ohara",
+                "height": "45cm",
+                "freshness": "7-10 ngày"
+            },
+            "care": [
+                "Thay nước hàng ngày",
+                "Cắt chân hoa xiên 45 độ",
+                "Tránh ánh nắng trực tiếp",
+                "Bổ sung thuốc dưỡng hoa"
+            ],
+            "createdAt": "2024-01-28T11:20:00Z",
+            "updatedAt": "2024-02-02T13:45:00Z"
+        },
+        {
+            "id": "prod-015",
+            "name": "Bình Hoa Cẩm Tú Cầu Xanh Pastel",
+            "slug": "binh-hoa-cam-tu-cau-xanh-pastel",
+            "category": "binh-hoa",
+            "price": 590000,
+            "originalPrice": null,
+            "discount": null,
+            "images": [
+                "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&q=80",
+                "https://images.unsplash.com/photo-1582794543139-8ac92a900275?w=800&q=80"
+            ],
+            "thumbnail": "https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=400&q=80",
+            "description": "Bình hoa cẩm tú cầu xanh pastel nhẹ nhàng trong bình gốm trắng hiện đại. Thiết kế thanh lịch, phù hợp cho không gian làm việc hoặc phòng khách.",
+            "shortDescription": "Cẩm tú cầu xanh trong bình gốm hiện đại",
+            "colors": [
+                "purple",
+                "white"
+            ],
+            "occasions": [
+                "birthday",
+                "graduation"
+            ],
+            "tags": [],
+            "stock": 35,
+            "inStock": true,
+            "rating": 4.6,
+            "reviewCount": 73,
+            "specifications": {
+                "type": "Bình Hoa",
+                "flowerCount": 8,
+                "flowerType": "Cẩm Tú Cầu",
+                "height": "50cm",
+                "freshness": "10-14 ngày"
+            },
+            "care": [
+                "Phun sương nhẹ mỗi ngày",
+                "Thay nước 2-3 ngày/lần",
+                "Đặt nơi thoáng mát",
+                "Cắt chân hoa khi cần"
+            ],
+            "createdAt": "2024-01-29T09:45:00Z",
+            "updatedAt": "2024-02-03T11:10:00Z"
+        }
+    ],
+    "categories": [
+        {
+            "id": "bo-hoa",
+            "name": "Bó Hoa",
+            "slug": "bo-hoa",
+            "icon": "flower",
+            "description": "Bó hoa tươi đẹp, thiết kế tinh tế",
+            "count": 45
+        },
+        {
+            "id": "gio-hoa",
+            "name": "Giỏ Hoa",
+            "slug": "gio-hoa",
+            "icon": "basket",
+            "description": "Giỏ hoa sang trọng, đa dạng phong cách",
+            "count": 32
+        },
+        {
+            "id": "hop-hoa",
+            "name": "Hộp Hoa",
+            "slug": "hop-hoa",
+            "icon": "box",
+            "description": "Hộp hoa cao cấp, thiết kế độc đáo",
+            "count": 28
+        },
+        {
+            "id": "lang-hoa",
+            "name": "Lẵng Hoa",
+            "slug": "lang-hoa",
+            "icon": "wreath",
+            "description": "Lẵng hoa trang trọng cho sự kiện",
+            "count": 18
+        },
+        {
+            "id": "ke-hoa",
+            "name": "Kệ Hoa",
+            "slug": "ke-hoa",
+            "icon": "stand",
+            "description": "Kệ hoa hoành tráng cho sự kiện lớn",
+            "count": 12
+        },
+        {
+            "id": "binh-hoa",
+            "name": "Bình Hoa",
+            "slug": "binh-hoa",
+            "icon": "vase",
+            "description": "Bình hoa trang trí sang trọng",
+            "count": 15
+        }
+    ],
+    "filters": {
+        "priceRanges": [
+            {
+                "id": "0-300k",
+                "label": "Dưới 300k",
+                "min": 0,
+                "max": 300000
+            },
+            {
+                "id": "300k-500k",
+                "label": "300k - 500k",
+                "min": 300000,
+                "max": 500000
+            },
+            {
+                "id": "500k-1m",
+                "label": "500k - 1 triệu",
+                "min": 500000,
+                "max": 1000000
+            },
+            {
+                "id": "1m+",
+                "label": "Trên 1 triệu",
+                "min": 1000000,
+                "max": 999999999
+            }
+        ],
+        "colors": [
+            {
+                "id": "red",
+                "name": "Đỏ",
+                "hex": "#EF4444"
+            },
+            {
+                "id": "pink",
+                "name": "Hồng",
+                "hex": "#EC4899"
+            },
+            {
+                "id": "white",
+                "name": "Trắng",
+                "hex": "#FFFFFF"
+            },
+            {
+                "id": "yellow",
+                "name": "Vàng",
+                "hex": "#F59E0B"
+            },
+            {
+                "id": "purple",
+                "name": "Tím",
+                "hex": "#A855F7"
+            },
+            {
+                "id": "mixed",
+                "name": "Nhiều màu",
+                "hex": "linear-gradient(90deg, #EF4444, #EC4899, #F59E0B)"
+            }
+        ],
+        "occasions": [
+            {
+                "id": "birthday",
+                "name": "Sinh nhật",
+                "icon": "🎂"
+            },
+            {
+                "id": "valentine",
+                "name": "Valentine",
+                "icon": "💝"
+            },
+            {
+                "id": "anniversary",
+                "name": "Kỷ niệm",
+                "icon": "💍"
+            },
+            {
+                "id": "wedding",
+                "name": "Đám cưới",
+                "icon": "💐"
+            },
+            {
+                "id": "graduation",
+                "name": "Tốt nghiệp",
+                "icon": "🎓"
+            },
+            {
+                "id": "opening",
+                "name": "Khai trương",
+                "icon": "🌟"
+            },
+            {
+                "id": "funeral",
+                "name": "Chia buồn",
+                "icon": "🕯️"
+            }
+        ]
+    }
+}
