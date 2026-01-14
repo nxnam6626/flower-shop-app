@@ -27,14 +27,14 @@ const MENU_ITEMS = [
           { label: 'Hộp Hoa', href: '/san-pham/hop-hoa', desc: 'Hộp hoa cao cấp', badge: null },
           { label: 'Lẵng Hoa', href: '/san-pham/lang-hoa', desc: 'Lẵng hoa trang trọng', badge: null },
           { label: 'Hoa Để Bàn', href: '/san-pham/hoa-de-ban', desc: 'Trang trí không gian', badge: 'Mới' },
+          { label: 'Bình Hoa', href: '/san-pham/binh-hoa', desc: 'Bình hoa cao cấp', badge: null },
+          { label: 'Kệ Hoa', href: '/san-pham/ke-hoa', desc: 'Kệ hoa cao cấp', badge: null },
         ]
       },
       {
         category: 'Đặc Biệt',
         items: [
-          { label: 'Hoa Sáp', href: '/san-pham/hoa-sap', desc: 'Lưu giữ mãi mãi', badge: null },
           { label: 'Hoa Gấu Bông', href: '/san-pham/hoa-gau-bong', desc: 'Dễ thương đáng yêu', badge: 'Hot' },
-          { label: 'Lan Hồ Điệp', href: '/san-pham/lan-ho-diep', desc: 'Sang trọng quý phái', badge: null },
         ]
       }
     ]
