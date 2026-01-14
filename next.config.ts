@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
                 port: '',
                 pathname: '/**',
             },
+            // Pravatar cho Avatar
+            {
+                protocol: 'https',
+                hostname: 'i.pravatar.cc',
+                port: '',
+                pathname: '/**',
+            },
         ],
     },
 };

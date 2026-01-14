@@ -1,8 +1,14 @@
 import { Metadata } from 'next'
+
+import HeroSection from "@/components/public/home/HeroSection";
 import BestSellers from "@/components/public/home/BestSellers";
 import BouquetShowcase from "@/components/public/home/BouquetShowcase";
 import FlowerBasketShowcase from "@/components/public/home/FlowerBasketShowcase";
-import HeroSection from "@/components/public/home/HeroSection";
+import FlowerBoxShowcase from "@/components/public/home/FlowerBoxShowcase";
+import FlowerStandShowcase from "@/components/public/home/FlowerStandShowcase";
+import FeedbackChatStyles from '@/components/public/home/FeedbackChatStyle';
+import FeedbackChatStyle from '@/components/public/home/FeedbackChatStyle';
+
 
 export const metadata: Metadata = {
   title: 'Pivoine Fleur - Cửa hàng hoa tươi cao cấp',
@@ -36,6 +42,20 @@ export default function HomePage() {
           <BouquetShowcase />
         </section>
 
+        {/* Flower Box Section */}
+        <section id="boxes" aria-labelledby="boxes-heading">
+          <FlowerBoxShowcase />
+
+        </section>
+
+        {/* Flower Stand Section */}
+        <section id="stands" aria-labelledby="stands-heading">
+          <FlowerStandShowcase />
+        </section>
+
+        <section id="feedback" aria-labelledby="feedback-heading">
+          <FeedbackChatStyle />
+        </section>
       </div>
     </>
   );

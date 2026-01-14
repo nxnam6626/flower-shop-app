@@ -8,8 +8,8 @@ interface SpecialBannerProps {
     image: string;
     linkUrl: string;
     className?: string;
-    titleColor?: string;      // Màu chữ title (default: text-teal-900)
-    separatorColor?: string;  // Màu separator (default: text-slate-700)
+    titleColor?: string;
+    separatorColor?: string;
 }
 
 export default function SpecialBannerCard({

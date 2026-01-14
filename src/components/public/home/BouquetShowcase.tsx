@@ -9,8 +9,8 @@ import ProductCard from './ProductCardHome'
 const BOUQUETS = [
     // Sản phẩm 1, 2, 3 (Sẽ nằm sau Banner)
     { id: 1, name: 'Falling In Love – B5', price: 570000, image: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800&q=80' },
-    { id: 2, name: 'Vườn Ngọc – BH11', price: 549000, image: 'https://images.unsplash.com/photo-1599577583696-e24c538e12d4?w=800&q=80' },
-    { id: 3, name: 'Hạ Ngọt', price: 493000, image: 'https://images.unsplash.com/photo-1589244159943-460088ed5b92?w=800&q=80' },
+    { id: 2, name: 'Vườn Ngọc – BH11', price: 549000, image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&q=80' },
+    { id: 3, name: 'Hạ Ngọt', price: 493000, image: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&q=80' },
     // Hàng 2
     { id: 4, name: 'Màu Tình Yêu', price: 580000, image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&q=80' },
     { id: 5, name: 'My shoulder – Bờ vai', price: 680000, image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=80' },
@@ -32,10 +32,8 @@ export default function BouquetShowcase() {
                         className="md:col-span-1"
                         titleColor="text-violet-900"
                         separatorColor="text-violet-700"
-
                     />
 
-                    {/* --- CÁC SẢN PHẨM CÒN LẠI --- */}
                     {BOUQUETS.map((product) => (
                         <ProductCard key={product.id} data={product} />
                     ))}
