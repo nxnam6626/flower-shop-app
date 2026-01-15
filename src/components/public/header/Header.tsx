@@ -4,8 +4,11 @@ import Link from 'next/link'
 import { Search, ShoppingCart, Headset, ChevronDown, Flower2, Calendar, Home, Menu, X } from 'lucide-react'
 import logo from "@/assets/public/images/pivoine-fleur.jpg"
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState, useEffect, useRef } from 'react'
+import { searchProducts, saveRecentSearch, getRecentSearches } from '@/lib/search'
+import productsData from '@/data/products.json'
+import { Product } from '@/types/product'
 
 // Menu structure - removed Quà Tặng and Blog
 const MENU_ITEMS = [
@@ -58,14 +61,89 @@ const MENU_ITEMS = [
 
 export default function Header() {
   const pathname = usePathname()
+  const router = useRouter()
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<Product[]>([])
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
+  const [showSuggestions, setShowSuggestions] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const suggestionsRef = useRef<HTMLDivElement>(null)
 
   const isActive = (href: string) => {
     if (!pathname) return false
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
+  }
+
+  // Debounced search
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([])
+      return
+    }
+
+    const timer = setTimeout(() => {
+      const results = searchProducts(productsData.products, searchQuery)
+      setSearchResults(results.slice(0, 5)) // Show max 5 suggestions
+    }, 300) // 300ms debounce
+
+    return () => clearTimeout(timer)
+  }, [searchQuery])
+
+  // Load recent searches on mount
+  useEffect(() => {
+    setRecentSearches(getRecentSearches())
+  }, [])
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target as Node) &&
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Handle search submit
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!searchQuery.trim()) return
+
+    saveRecentSearch(searchQuery)
+    setRecentSearches(getRecentSearches())
+    router.push(`/tim-kiem?q=${encodeURIComponent(searchQuery)}`)
+    setSearchOpen(false)
+    setShowSuggestions(false)
+    setSearchQuery('')
+  }
+
+  // Handle suggestion click
+  const handleSuggestionClick = (productSlug: string, category: string) => {
+    router.push(`/san-pham/${category}/${productSlug}`)
+    setSearchOpen(false)
+    setShowSuggestions(false)
+    setSearchQuery('')
+  }
+
+  // Handle recent search click
+  const handleRecentSearchClick = (query: string) => {
+    setSearchQuery(query)
+    router.push(`/tim-kiem?q=${encodeURIComponent(query)}`)
+    setSearchOpen(false)
+    setShowSuggestions(false)
   }
 
   return (
@@ -265,19 +343,99 @@ export default function Header() {
 
         {/* Search Overlay - Desktop */}
         {searchOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-200 shadow-lg py-4 px-4 animate-[slideDown_0.2s_ease-out]">
-            <div className="container mx-auto max-w-2xl">
-              <div className="flex h-11 border-2 border-pink-400 rounded-full overflow-hidden bg-white focus-within:ring-2 focus-within:ring-pink-200">
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm hoa, danh mục..."
-                  className="flex-1 px-5 text-sm outline-none"
-                  autoFocus
-                />
-                <button className="bg-pink-600 w-14 flex items-center justify-center text-white hover:bg-pink-700 transition">
-                  <Search size={20} />
-                </button>
-              </div>
+          <div className="absolute top-full left-0 right-0 bg-white border-t border-slate-200 shadow-lg py-4 px-4 animate-[slideDown_0.2s_ease-out] z-50">
+            <div className="container mx-auto max-w-2xl relative">
+              <form onSubmit={handleSearchSubmit}>
+                <div className="flex h-11 border-2 border-pink-400 rounded-full overflow-hidden bg-white focus-within:ring-2 focus-within:ring-pink-200">
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value)
+                      setShowSuggestions(true)
+                    }}
+                    onFocus={() => setShowSuggestions(true)}
+                    placeholder="Tìm kiếm hoa, danh mục..."
+                    className="flex-1 px-5 text-sm outline-none"
+                    autoFocus
+                  />
+                  <button
+                    type="submit"
+                    className="bg-pink-600 w-14 flex items-center justify-center text-white hover:bg-pink-700 transition"
+                  >
+                    <Search size={20} />
+                  </button>
+                </div>
+              </form>
+
+              {/* Search Suggestions Dropdown */}
+              {showSuggestions && (searchResults.length > 0 || recentSearches.length > 0) && (
+                <div
+                  ref={suggestionsRef}
+                  className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden animate-[fadeIn_0.2s_ease-out] max-h-[400px] overflow-y-auto"
+                >
+                  {/* Product Suggestions */}
+                  {searchResults.length > 0 && (
+                    <div className="p-3">
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 px-2">
+                        Gợi ý sản phẩm
+                      </div>
+                      <div className="space-y-1">
+                        {searchResults.map((product) => (
+                          <button
+                            key={product.id}
+                            onClick={() => handleSuggestionClick(product.slug, product.category)}
+                            className="w-full flex items-center gap-3 p-2 hover:bg-pink-50 rounded-lg transition-colors text-left"
+                          >
+                            <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100">
+                              <Image
+                                src={product.thumbnail}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                                sizes="48px"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-slate-800 truncate">
+                                {product.name}
+                              </p>
+                              <p className="text-xs text-slate-500 truncate">
+                                {product.specifications.type}
+                              </p>
+                            </div>
+                            <div className="text-sm font-bold text-pink-600">
+                              {product.price.toLocaleString('vi-VN')}đ
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Recent Searches */}
+                  {!searchQuery && recentSearches.length > 0 && (
+                    <div className="p-3 border-t border-slate-100">
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 px-2">
+                        Tìm kiếm gần đây
+                      </div>
+                      <div className="space-y-1">
+                        {recentSearches.map((query, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleRecentSearchClick(query)}
+                            className="w-full flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors text-left"
+                          >
+                            <Search className="w-4 h-4 text-slate-400" />
+                            <span className="text-sm text-slate-700">{query}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
