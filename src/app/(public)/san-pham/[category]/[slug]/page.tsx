@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import ProductGallery from '@/components/public/products/ProductGallery'
 import ProductContactButton from '@/components/public/products/ProductContactButton'
-import { Star, Heart, Share2, CheckCircle, Home, ChevronRight, Flower2, Package, Clock, Award } from 'lucide-react'
+import { Star, Heart, Share2, CheckCircle, Home, ChevronRight, Flower2, Package, Clock, Award, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 
 // Import product data
@@ -56,6 +56,10 @@ export default function ProductDetailPage() {
             navigator.clipboard.writeText(window.location.href)
             alert('Đã copy link sản phẩm!')
         }
+    }
+
+    const handleAddToCart = () => {
+        alert('Đã thêm vào giỏ hàng!')
     }
 
     return (

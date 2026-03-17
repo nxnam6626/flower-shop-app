@@ -3,7 +3,7 @@
 import { Product, ViewMode } from '@/types/product'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, Star } from 'lucide-react'
+import { Heart, Star, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import ProductContactButton from './ProductContactButton'
 import { useWishlist } from '@/hooks/useWishlist'
@@ -25,6 +25,11 @@ export default function ProductCard({
     const isWishlisted = isInWishlist(product.id)
     const discountPercentage = product.discount || 0
     const hasDiscount = discountPercentage > 0
+
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.preventDefault()
+        alert('Đã thêm vào giỏ hàng!')
+    }
 
     const handleWishlist = (e: React.MouseEvent) => {
         e.preventDefault()
