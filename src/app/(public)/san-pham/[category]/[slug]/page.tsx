@@ -3,7 +3,8 @@
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import ProductGallery from '@/components/public/products/ProductGallery'
-import { Star, Heart, Share2, ShoppingCart, CheckCircle, Home, ChevronRight, Flower2, Package, Clock, Award } from 'lucide-react'
+import ProductContactButton from '@/components/public/products/ProductContactButton'
+import { Star, Heart, Share2, CheckCircle, Home, ChevronRight, Flower2, Package, Clock, Award } from 'lucide-react'
 import { useState } from 'react'
 
 // Import product data
@@ -38,11 +39,6 @@ export default function ProductDetailPage() {
 
     const hasDiscount = product.discount && product.originalPrice
     const categoryInfo = productsData.categories.find(c => c.slug === category)
-
-    const handleAddToCart = () => {
-        // TODO: Implement add to cart
-        alert(`Đã thêm ${quantity} x ${product.name} vào giỏ hàng!`)
-    }
 
     const handleShare = async () => {
         if (navigator.share) {
@@ -230,31 +226,42 @@ export default function ProductDetailPage() {
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="flex gap-3">
-                                <button
-                                    onClick={handleAddToCart}
-                                    className="flex-1 bg-pink-600 text-white py-4 rounded-xl font-bold hover:bg-pink-700 transition-colors flex items-center justify-center gap-2 text-lg shadow-lg hover:shadow-xl"
-                                >
-                                    <ShoppingCart size={22} />
-                                    Thêm Vào Giỏ
-                                </button>
-                                <button
-                                    onClick={() => setIsWishlisted(!isWishlisted)}
-                                    className={`w-14 h-14 border-2 rounded-xl transition-all flex items-center justify-center ${isWishlisted
+                            <div className="space-y-3">
+                                {/* Primary CTA Row */}
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={handleAddToCart}
+                                        className="flex-1 bg-pink-600 text-white py-4 rounded-xl font-bold hover:bg-pink-700 transition-colors flex items-center justify-center gap-2 text-lg shadow-lg hover:shadow-xl"
+                                    >
+                                        <ShoppingCart size={22} />
+                                        Thêm Vào Giỏ
+                                    </button>
+                                    <button
+                                        onClick={() => setIsWishlisted(!isWishlisted)}
+                                        className={`w-14 h-14 border-2 rounded-xl transition-all flex items-center justify-center ${isWishlisted
                                             ? 'border-pink-600 bg-pink-50 text-pink-600'
                                             : 'border-slate-300 text-slate-600 hover:border-pink-300 hover:bg-pink-50'
-                                        }`}
-                                    aria-label="Add to wishlist"
-                                >
-                                    <Heart size={22} className={isWishlisted ? 'fill-current' : ''} />
-                                </button>
-                                <button
-                                    onClick={handleShare}
-                                    className="w-14 h-14 border-2 border-slate-300 text-slate-600 rounded-xl hover:border-pink-300 hover:bg-pink-50 transition-all flex items-center justify-center"
-                                    aria-label="Share"
-                                >
-                                    <Share2 size={22} />
-                                </button>
+                                            }`}
+                                        aria-label="Add to wishlist"
+                                    >
+                                        <Heart size={22} className={isWishlisted ? 'fill-current' : ''} />
+                                    </button>
+                                    <button
+                                        onClick={handleShare}
+                                        className="w-14 h-14 border-2 border-slate-300 text-slate-600 rounded-xl hover:border-pink-300 hover:bg-pink-50 transition-all flex items-center justify-center"
+                                        aria-label="Share"
+                                    >
+                                        <Share2 size={22} />
+                                    </button>
+                                </div>
+
+                                {/* Zalo Contact Button */}
+                                <ProductContactButton
+                                    product={product}
+                                    variant="zalo"
+                                    size="lg"
+                                    className="w-full"
+                                />
                             </div>
 
                             {/* Stock Info */}

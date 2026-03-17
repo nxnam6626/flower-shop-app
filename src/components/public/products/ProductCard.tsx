@@ -3,8 +3,10 @@
 import { Product, ViewMode } from '@/types/product'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, ShoppingCart, Star } from 'lucide-react'
+import { Heart, Star } from 'lucide-react'
 import { useState } from 'react'
+import ProductContactButton from './ProductContactButton'
+import { useWishlist } from '@/hooks/useWishlist'
 
 interface ProductCardProps {
     product: Product
@@ -17,22 +19,20 @@ export default function ProductCard({
     viewMode = 'grid',
     priority = false
 }: ProductCardProps) {
-    const [isWishlisted, setIsWishlisted] = useState(false)
     const [imageLoaded, setImageLoaded] = useState(false)
+    const { isInWishlist, addToWishlist, removeFromWishlist } = useWishlist()
 
+    const isWishlisted = isInWishlist(product.id)
     const discountPercentage = product.discount || 0
     const hasDiscount = discountPercentage > 0
 
-    const handleAddToCart = (e: React.MouseEvent) => {
-        e.preventDefault()
-        // TODO: Implement add to cart logic
-        console.log('Add to cart:', product.id)
-    }
-
     const handleWishlist = (e: React.MouseEvent) => {
         e.preventDefault()
-        setIsWishlisted(!isWishlisted)
-        // TODO: Implement wishlist logic
+        if (isWishlisted) {
+            removeFromWishlist(product.id)
+        } else {
+            addToWishlist(product)
+        }
     }
 
     // Grid view (default)
@@ -84,20 +84,20 @@ export default function ProductCard({
                         <button
                             onClick={handleWishlist}
                             className={`w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition-all ${isWishlisted
-                                    ? 'bg-pink-600 text-white scale-110'
-                                    : 'bg-white text-slate-600 hover:bg-pink-50 hover:text-pink-600'
+                                ? 'bg-pink-600 text-white scale-110'
+                                : 'bg-white text-slate-600 hover:bg-pink-50 hover:text-pink-600'
                                 }`}
-                            aria-label="Add to wishlist"
+                            aria-label="Thêm vào danh sách yêu thích"
                         >
                             <Heart size={18} className={isWishlisted ? 'fill-current' : ''} />
                         </button>
-                        <button
-                            onClick={handleAddToCart}
-                            className="w-9 h-9 bg-white text-slate-600 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white shadow-lg transition-all hover:scale-110"
-                            aria-label="Add to cart"
-                        >
-                            <ShoppingCart size={18} />
-                        </button>
+                        <div onClick={(e) => e.preventDefault()}>
+                            <ProductContactButton
+                                product={product}
+                                variant="zalo"
+                                showLabel={false}
+                            />
+                        </div>
                     </div>
 
                     {/* Stock status */}
@@ -267,12 +267,20 @@ export default function ProductCard({
                         <button
                             onClick={handleWishlist}
                             className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${isWishlisted
-                                    ? 'bg-pink-600 text-white'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-pink-50 hover:text-pink-600'
+                                ? 'bg-pink-600 text-white'
+                                : 'bg-slate-100 text-slate-600 hover:bg-pink-50 hover:text-pink-600'
                                 }`}
                         >
                             <Heart size={18} className={isWishlisted ? 'fill-current' : ''} />
                         </button>
+                        <div onClick={(e) => e.preventDefault()}>
+                            <ProductContactButton
+                                product={product}
+                                variant="zalo"
+                                size="md"
+                                showLabel={false}
+                            />
+                        </div>
                         <button
                             onClick={handleAddToCart}
                             className="px-4 py-2 bg-pink-600 text-white rounded-full font-medium hover:bg-pink-700 transition-colors flex items-center gap-2"

@@ -1,14 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { Search, ShoppingCart, Headset, ChevronDown, Flower2, Calendar, Home, Menu, X } from 'lucide-react'
+import { Search, Heart, Headset, ChevronDown, Flower2, Calendar, Home, Menu, X, MessageCircle, Phone } from 'lucide-react'
 import logo from "@/assets/public/images/pivoine-fleur.jpg"
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
 import { searchProducts, saveRecentSearch, getRecentSearches } from '@/lib/search'
+import { openZaloChat, openMessengerChat, dialPhone, formatPhoneNumber } from '@/lib/contact'
 import productsData from '@/data/products.json'
 import { Product } from '@/types/product'
+import { useWishlist } from '@/hooks/useWishlist'
 
 // Menu structure - removed Quà Tặng and Blog
 const MENU_ITEMS = [
@@ -62,6 +64,7 @@ const MENU_ITEMS = [
 export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
+  const { wishlistCount } = useWishlist()
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -71,8 +74,25 @@ export default function Header() {
   const [searchResults, setSearchResults] = useState<Product[]>([])
   const [recentSearches, setRecentSearches] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [mobileSearchQuery, setMobileSearchQuery] = useState('')
+  const [mobileSearchResults, setMobileSearchResults] = useState<Product[]>([])
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const suggestionsRef = useRef<HTMLDivElement>(null)
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null)
+
+  // Support menu state
+  const [showSupportMenu, setShowSupportMenu] = useState(false)
+  const supportMenuRef = useRef<HTMLDivElement>(null)
+
+  // Popular searches (hardcoded, could be from analytics)
+  const popularSearches = [
+    'hoa hồng',
+    'hoa sinh nhật',
+    'hoa cưới',
+    'hoa khai trương',
+    'hoa tulip',
+  ]
 
   const isActive = (href: string) => {
     if (!pathname) return false
@@ -80,7 +100,7 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
-  // Debounced search
+  // Debounced search - Desktop
   useEffect(() => {
     if (!searchQuery.trim()) {
       setSearchResults([])
@@ -94,6 +114,21 @@ export default function Header() {
 
     return () => clearTimeout(timer)
   }, [searchQuery])
+
+  // Debounced search - Mobile
+  useEffect(() => {
+    if (!mobileSearchQuery.trim()) {
+      setMobileSearchResults([])
+      return
+    }
+
+    const timer = setTimeout(() => {
+      const results = searchProducts(productsData.products, mobileSearchQuery)
+      setMobileSearchResults(results.slice(0, 5))
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [mobileSearchQuery])
 
   // Load recent searches on mount
   useEffect(() => {
@@ -110,6 +145,21 @@ export default function Header() {
         !searchInputRef.current.contains(event.target as Node)
       ) {
         setShowSuggestions(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Close support menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        supportMenuRef.current &&
+        !supportMenuRef.current.contains(event.target as Node)
+      ) {
+        setShowSupportMenu(false)
       }
     }
 
@@ -144,6 +194,48 @@ export default function Header() {
     router.push(`/tim-kiem?q=${encodeURIComponent(query)}`)
     setSearchOpen(false)
     setShowSuggestions(false)
+  }
+
+  // Handle popular search click
+  const handlePopularSearchClick = (query: string) => {
+    setSearchQuery(query)
+    saveRecentSearch(query)
+    setRecentSearches(getRecentSearches())
+    router.push(`/tim-kiem?q=${encodeURIComponent(query)}`)
+    setSearchOpen(false)
+    setShowSuggestions(false)
+  }
+
+  // Mobile search handlers
+  const handleMobileSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!mobileSearchQuery.trim()) return
+
+    saveRecentSearch(mobileSearchQuery)
+    setRecentSearches(getRecentSearches())
+    router.push(`/tim-kiem?q=${encodeURIComponent(mobileSearchQuery)}`)
+    setShowMobileSearch(false)
+    setMobileMenuOpen(false)
+    setMobileSearchQuery('')
+  }
+
+  const handleMobileSuggestionClick = (productSlug: string, category: string) => {
+    router.push(`/san-pham/${category}/${productSlug}`)
+    setShowMobileSearch(false)
+    setMobileMenuOpen(false)
+    setMobileSearchQuery('')
+  }
+
+  // Highlight matching text
+  const highlightText = (text: string, query: string) => {
+    if (!query.trim()) return text
+
+    const parts = text.split(new RegExp(`(${query})`, 'gi'))
+    return parts.map((part, i) =>
+      part.toLowerCase() === query.toLowerCase()
+        ? `<mark class="bg-yellow-200 text-slate-900">${part}</mark>`
+        : part
+    ).join('')
   }
 
   return (
@@ -294,30 +386,98 @@ export default function Header() {
               <Search size={18} />
             </button>
 
-            {/* Hotline - Desktop only, compact */}
-            <div className="hidden xl:flex items-center gap-2 cursor-pointer group">
-              <div className="w-9 h-9 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                <Headset size={16} strokeWidth={1.5} />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-[10px] font-medium text-slate-500">Hotline</span>
-                <span className="text-xs font-bold text-slate-800 group-hover:text-teal-600 transition-colors">093 407 2575</span>
-              </div>
+            {/* Support Menu - Desktop only */}
+            <div className="hidden xl:block relative">
+              <button
+                onClick={() => setShowSupportMenu(!showSupportMenu)}
+                className="flex items-center gap-2 cursor-pointer group"
+              >
+                <div className="w-9 h-9 bg-teal-50 rounded-full flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                  <Headset size={16} strokeWidth={1.5} />
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[10px] font-medium text-slate-500">Tư Vấn</span>
+                  <span className="text-xs font-bold text-slate-800 group-hover:text-teal-600 transition-colors">Liên Hệ Ngay</span>
+                </div>
+              </button>
+
+              {/* Support Dropdown */}
+              {showSupportMenu && (
+                <div
+                  ref={supportMenuRef}
+                  className="absolute top-full right-0 mt-2 bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden animate-[slideDown_0.2s_ease-out] min-w-[220px] z-50"
+                >
+                  {/* Zalo */}
+                  <button
+                    onClick={() => {
+                      openZaloChat()
+                      setShowSupportMenu(false)
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors border-b border-slate-100"
+                  >
+                    <div className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <MessageCircle size={18} className="text-white" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="font-semibold text-slate-800 text-sm">Chat Zalo</p>
+                      <p className="text-xs text-slate-500">Phản hồi nhanh</p>
+                    </div>
+                  </button>
+
+                  {/* Messenger */}
+                  <button
+                    onClick={() => {
+                      openMessengerChat()
+                      setShowSupportMenu(false)
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors border-b border-slate-100"
+                  >
+                    <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
+                        <path d="M12 2C6.5 2 2 6.14 2 11.25c0 2.88 1.44 5.45 3.69 7.14V22l3.45-1.89c.92.25 1.89.39 2.86.39 5.5 0 10-4.14 10-9.25S17.5 2 12 2zm1.03 12.41l-2.49-2.65-4.87 2.65 5.36-5.69 2.55 2.65 4.81-2.65-5.36 5.69z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="font-semibold text-slate-800 text-sm">Messenger</p>
+                      <p className="text-xs text-slate-500">Chat Facebook</p>
+                    </div>
+                  </button>
+
+                  {/* Phone */}
+                  <button
+                    onClick={() => {
+                      dialPhone()
+                      setShowSupportMenu(false)
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-green-50 transition-colors"
+                  >
+                    <div className="w-9 h-9 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Phone size={18} className="text-white" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="font-semibold text-slate-800 text-sm">Gọi Ngay</p>
+                      <p className="text-xs text-green-600 font-medium">{formatPhoneNumber('0353894802')}</p>
+                    </div>
+                  </button>
+                </div>
+              )}
             </div>
 
-            {/* Cart */}
-            <Link href="/cart" className="flex items-center gap-2 group">
+            {/* Wishlist */}
+            <Link href="/yeu-thich" className="flex items-center gap-2 group">
               <div className="relative">
                 <div className="w-9 h-9 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 border border-pink-100 group-hover:bg-pink-500 group-hover:text-white transition-all">
-                  <ShoppingCart size={18} strokeWidth={1.5} />
+                  <Heart size={18} strokeWidth={1.5} />
                 </div>
-                <span className="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
-                  0
-                </span>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+                    {wishlistCount}
+                  </span>
+                )}
               </div>
               <div className="hidden xl:flex flex-col leading-tight">
-                <span className="text-[10px] font-medium text-slate-500">Giỏ hàng</span>
-                <span className="text-xs font-bold text-slate-800 group-hover:text-pink-600 transition-colors">0đ</span>
+                <span className="text-[10px] font-medium text-slate-500">Yêu Thích</span>
+                <span className="text-xs font-bold text-slate-800 group-hover:text-pink-600 transition-colors">{wishlistCount} sp</span>
               </div>
             </Link>
 
@@ -398,9 +558,10 @@ export default function Header() {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium text-slate-800 truncate">
-                                {product.name}
-                              </p>
+                              <p
+                                className="text-sm font-medium text-slate-800 truncate"
+                                dangerouslySetInnerHTML={{ __html: highlightText(product.name, searchQuery) }}
+                              />
                               <p className="text-xs text-slate-500 truncate">
                                 {product.specifications.type}
                               </p>
@@ -434,6 +595,27 @@ export default function Header() {
                       </div>
                     </div>
                   )}
+
+                  {/* Popular Searches */}
+                  {!searchQuery && recentSearches.length === 0 && (
+                    <div className="p-3">
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 px-2">
+                        🔥 Tìm kiếm phổ biến
+                      </div>
+                      <div className="space-y-1">
+                        {popularSearches.map((query, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handlePopularSearchClick(query)}
+                            className="w-full flex items-center gap-3 p-2 hover:bg-pink-50 rounded-lg transition-colors text-left"
+                          >
+                            <span className="text-pink-500">🔥</span>
+                            <span className="text-sm text-slate-700">{query}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -445,14 +627,15 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-[73px] bg-black/20 backdrop-blur-sm z-40 animate-[fadeIn_0.2s_ease-out]">
           <div className="bg-white h-full w-4/5 max-w-sm shadow-2xl p-6 overflow-y-auto animate-[slideInLeft_0.25s_ease-out]">
-            {/* Search - Mobile */}
+            {/* Search Button - Mobile */}
             <div className="mb-6">
-              <div className="flex h-10 border border-slate-300 rounded-full overflow-hidden">
-                <input type="text" placeholder="Tìm kiếm..." className="flex-1 px-4 text-sm outline-none" />
-                <button className="bg-pink-600 w-12 flex items-center justify-center text-white">
-                  <Search size={18} />
-                </button>
-              </div>
+              <button
+                onClick={() => setShowMobileSearch(true)}
+                className="w-full flex items-center gap-3 h-12 border-2 border-pink-400 rounded-full px-4 bg-pink-50 hover:bg-pink-100 transition-colors"
+              >
+                <Search className="w-5 h-5 text-pink-600" />
+                <span className="text-slate-600 text-sm">Tìm kiếm sản phẩm...</span>
+              </button>
             </div>
 
             {/* Mobile Menu Items */}
